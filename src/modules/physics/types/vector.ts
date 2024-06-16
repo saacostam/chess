@@ -4,4 +4,8 @@ export class Vector {
   public clone(): Vector {
     return new Vector(this.x, this.y);
   }
+
+  public isEqual(v: Vector): boolean {
+    return this.x === v.x && this.y === v.y;
+  }
 }

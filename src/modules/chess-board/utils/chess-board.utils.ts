@@ -7,7 +7,7 @@ import {
   ChessPieceColor,
   ChessBoardSquareModel,
   PawnChessPiece,
-  RowChessPiece,
+  RookChessPiece,
   ChessBoardGrid,
 } from '../types';
 
@@ -51,7 +51,7 @@ export const _getChessPieceByPosition = (
 
   if (isWhiteBackRow) {
     if (position.x === 0 || position.x === WIDTH - 1)
-      chessPiece = new RowChessPiece({
+      chessPiece = new RookChessPiece({
         color: ChessPieceColor.WHITE,
       });
   } else if (isWhitePawnRow) {
@@ -60,7 +60,7 @@ export const _getChessPieceByPosition = (
     });
   } else if (isBlackBackRow) {
     if (position.x === 0 || position.x === WIDTH - 1)
-      chessPiece = new RowChessPiece({
+      chessPiece = new RookChessPiece({
         color: ChessPieceColor.BLACK,
       });
   } else if (isBlackPawnRow) {
@@ -124,3 +124,12 @@ export const findSquareById = (
     }
   }
 };
+
+export const isWithinLimits = (
+  chessBoard: ChessBoardModel,
+  position: Vector
+): boolean =>
+  0 <= position.x &&
+  position.x < chessBoard.grid.length &&
+  0 <= position.y &&
+  position.y < chessBoard.grid[0].length;

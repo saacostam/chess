@@ -5,7 +5,7 @@ interface RowChessPieceOptions {
   color: ChessPieceColor;
 }
 
-export class RowChessPiece implements IChessPiece {
+export class RookChessPiece implements IChessPiece {
   public id = uuid();
   public type: ChessPieceType = ChessPieceType.ROW;
   public color: ChessPieceColor;

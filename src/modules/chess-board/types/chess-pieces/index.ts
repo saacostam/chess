@@ -1,8 +1,8 @@
 export * from './pawn.chess-piece';
-export * from './row.chess-piece';
+export * from './rook.chess-piece';
 
 import { PawnChessPiece } from './pawn.chess-piece';
-import { RowChessPiece } from './row.chess-piece';
+import { RookChessPiece } from './rook.chess-piece';
 
 export enum ChessPieceType {
   PAWN = 'Pawn',
@@ -24,4 +24,4 @@ export interface IChessPiece {
   color: ChessPieceColor;
 }
 
-export type ChessPiece = PawnChessPiece | RowChessPiece;
+export type ChessPiece = PawnChessPiece | RookChessPiece;

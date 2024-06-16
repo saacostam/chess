@@ -4,16 +4,16 @@ import { ChessPieceColor, ChessPieceType, IChessPiece, PieceCanMove } from '.';
 import { isWithinLimits } from '../../utils';
 import { Vector } from '../../../physics';
 
-interface RowChessPieceOptions {
+interface QueenChessPieceOptions {
   color: ChessPieceColor;
 }
 
-export class RookChessPiece implements IChessPiece {
+export class QueenChessPiece implements IChessPiece {
   public id = uuid();
-  public type: ChessPieceType = ChessPieceType.ROOK;
+  public type: ChessPieceType = ChessPieceType.QUEEN;
   public color: ChessPieceColor;
 
-  constructor({ color }: RowChessPieceOptions) {
+  constructor({ color }: QueenChessPieceOptions) {
     this.color = color;
   }
 
@@ -21,11 +21,14 @@ export class RookChessPiece implements IChessPiece {
     chessBoard,
     currentSquare,
     objectiveSquare,
-  }: PieceCanMove<RookChessPiece>): boolean {
+  }: PieceCanMove<QueenChessPiece>): boolean {
     let dx = objectiveSquare.position.x - currentSquare.position.x;
     let dy = objectiveSquare.position.y - currentSquare.position.y;
 
-    if ((dx === 0 && dy === 0) || (dx !== 0 && dy !== 0)) return false;
+    const isOrthogonal = !((dx === 0 && dy === 0) || (dx !== 0 && dy !== 0));
+    const isDiagonal = !(Math.abs(dx) !== Math.abs(dy));
+
+    if (!isOrthogonal && !isDiagonal) return false;
 
     dx = dx === 0 ? 0 : dx / Math.abs(dx);
     dy = dy === 0 ? 0 : dy / Math.abs(dy);

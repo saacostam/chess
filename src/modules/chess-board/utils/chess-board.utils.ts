@@ -10,6 +10,7 @@ import {
   ChessPieceColor,
   KnightChessPiece,
   PawnChessPiece,
+  QueenChessPiece,
   RookChessPiece,
 } from '../types';
 
@@ -64,6 +65,10 @@ export const _getChessPieceByPosition = (
       chessPiece = new BishopChessPiece({
         color: ChessPieceColor.WHITE,
       });
+    else if (position.x === 3)
+      chessPiece = new QueenChessPiece({
+        color: ChessPieceColor.WHITE,
+      });
   } else if (isWhitePawnRow) {
     chessPiece = new PawnChessPiece({
       color: ChessPieceColor.WHITE,
@@ -79,6 +84,10 @@ export const _getChessPieceByPosition = (
       });
     else if (position.x === 2 || position.x === WIDTH - 3)
       chessPiece = new BishopChessPiece({
+        color: ChessPieceColor.BLACK,
+      });
+    else if (position.x === 3)
+      chessPiece = new QueenChessPiece({
         color: ChessPieceColor.BLACK,
       });
   } else if (isBlackPawnRow) {

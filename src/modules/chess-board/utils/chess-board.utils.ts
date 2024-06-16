@@ -55,7 +55,7 @@ export const _getChessPieceByPosition = (
       chessPiece = new RookChessPiece({
         color: ChessPieceColor.WHITE,
       });
-    else if (position.x === 1 || position.x === WIDTH - 2)
+    else if (position.x === 2 || position.x === WIDTH - 3)
       chessPiece = new BishopChessPiece({
         color: ChessPieceColor.WHITE,
       });
@@ -68,7 +68,7 @@ export const _getChessPieceByPosition = (
       chessPiece = new RookChessPiece({
         color: ChessPieceColor.BLACK,
       });
-    else if (position.x === 1 || position.x === WIDTH - 2)
+    else if (position.x === 2 || position.x === WIDTH - 3)
       chessPiece = new BishopChessPiece({
         color: ChessPieceColor.BLACK,
       });

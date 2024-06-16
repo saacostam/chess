@@ -25,8 +25,6 @@ export class BishopChessPiece implements IChessPiece {
     let dx = objectiveSquare.position.x - currentSquare.position.x;
     let dy = objectiveSquare.position.y - currentSquare.position.y;
 
-    console.log(dx, dy);
-
     if (Math.abs(dx) !== Math.abs(dy)) return false;
 
     dx = dx === 0 ? 0 : dx / Math.abs(dx);

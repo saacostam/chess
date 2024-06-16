@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid'
+
 import { Vector } from "src/modules/physics";
 import { ChessPiece } from "./chess-pieces";
 
@@ -7,8 +9,9 @@ interface ChessBoardSquareOptions{
 }
 
 export class ChessBoardSquareModel{
-    position: Vector;
-    piece?: ChessPiece;
+    public id: string = uuid();
+    public position: Vector;
+    public piece?: ChessPiece;
 
     constructor({
         position,

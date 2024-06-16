@@ -19,6 +19,7 @@ export enum ChessPieceColor{
 }
 
 export interface IChessPiece{
+    id: string;
     type: ChessPieceType;
     color: ChessPieceColor;
 }

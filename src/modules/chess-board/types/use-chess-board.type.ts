@@ -1,5 +1,5 @@
 export type HandleChessBoardSquareOnDrop = (
   pieceId: string,
   currSquareId: string,
-  objectiveSquareId: string,
+  objectiveSquareId: string
 ) => void;

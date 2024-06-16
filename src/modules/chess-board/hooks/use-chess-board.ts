@@ -5,33 +5,45 @@ import { HandleChessBoardSquareOnDrop } from '../types';
 import { useChessBoardClass } from './use-chess-board-class';
 
 export const useChessBoard = () => {
-  const {
-    chessBoard,
-    updateChessBoardSquares,
-  } = useChessBoardClass();
+  const { chessBoard, updateChessBoardSquares } = useChessBoardClass();
 
   const handleChessBoardSquareOnDrop: HandleChessBoardSquareOnDrop =
-    useCallback((pieceId, currSquareId, objectiveSquareId) => {
-      updateChessBoardSquares((chessBoard) => {
-        const piece = findPieceById(chessBoard, pieceId);
+    useCallback(
+      (pieceId, currSquareId, objectiveSquareId) => {
+        updateChessBoardSquares((chessBoard) => {
+          const piece = findPieceById(chessBoard, pieceId);
 
-        const currSquare = findSquareById(chessBoard, currSquareId);
-        const objectiveSquare = findSquareById(chessBoard, objectiveSquareId);
+          const currSquare = findSquareById(chessBoard, currSquareId);
+          const objectiveSquare = findSquareById(chessBoard, objectiveSquareId);
 
-        if (!piece || !currSquare || !objectiveSquare || objectiveSquare.piece) return [];
+          if (
+            !piece ||
+            !currSquare ||
+            !objectiveSquare ||
+            objectiveSquare.piece
+          )
+            return [];
 
-        return [
-          [currSquare.id, (currSquare) => ({
-            ...currSquare,
-            piece: undefined,
-          })],
-          [objectiveSquare.id, (objectiveSquare) => ({
-            ...objectiveSquare,
-            piece: piece,
-          })]
-        ]});
-      }
-    , [updateChessBoardSquares]);
+          return [
+            [
+              currSquare.id,
+              (currSquare) => ({
+                ...currSquare,
+                piece: undefined,
+              }),
+            ],
+            [
+              objectiveSquare.id,
+              (objectiveSquare) => ({
+                ...objectiveSquare,
+                piece: piece,
+              }),
+            ],
+          ];
+        });
+      },
+      [updateChessBoardSquares]
+    );
 
   return useMemo(
     () => ({

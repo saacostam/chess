@@ -1,7 +1,7 @@
-import { ChessBoardSquareModel } from "./chess-board-square.type";
+import { ChessBoardSquareModel } from './chess-board-square.type';
 
-export type ChessBoardGrid = ChessBoardSquareModel[][]
+export type ChessBoardGrid = ChessBoardSquareModel[][];
 
-export class ChessBoardModel{
-    constructor(public grid: ChessBoardGrid){};
+export class ChessBoardModel {
+  constructor(public grid: ChessBoardGrid) {}
 }

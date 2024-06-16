@@ -11,30 +11,31 @@ export const useChessBoardClass = () => {
     []
   );
 
-  const updateChessBoardSquares: UpdateChessBoardSquares =
-    useCallback(
-      (setChessBoardSquaresState) => {
-        setChessBoard(prevState => {
-          const updates = setChessBoardSquaresState(prevState);
+  const updateChessBoardSquares: UpdateChessBoardSquares = useCallback(
+    (setChessBoardSquaresState) => {
+      setChessBoard((prevState) => {
+        const updates = setChessBoardSquaresState(prevState);
 
-          prevState.grid = prevState.grid.map(
-            (row) => row.map(
-              (square) => {
-                const update = updates.find(([chessBoardSquareId]) => chessBoardSquareId === square.id);
-                if (!update) return square;
-                const [, setChessBoardSquare] = update;
-                return typeof setChessBoardSquare === 'function' ? setChessBoardSquare(square) : setChessBoardSquare;
-              },
-            )
-          )
+        prevState.grid = prevState.grid.map((row) =>
+          row.map((square) => {
+            const update = updates.find(
+              ([chessBoardSquareId]) => chessBoardSquareId === square.id
+            );
+            if (!update) return square;
+            const [, setChessBoardSquare] = update;
+            return typeof setChessBoardSquare === 'function'
+              ? setChessBoardSquare(square)
+              : setChessBoardSquare;
+          })
+        );
 
-          return {
-            ...prevState,
-          };
-        })
-      },
-      []
-    );
+        return {
+          ...prevState,
+        };
+      });
+    },
+    []
+  );
 
   return useMemo(
     () => ({

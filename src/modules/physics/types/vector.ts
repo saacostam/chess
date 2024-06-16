@@ -1,7 +1,7 @@
-export class Vector{
-    constructor(public x: number, public y: number){};
+export class Vector {
+  constructor(public x: number, public y: number) {}
 
-    public clone(): Vector{
-        return new Vector(this.x, this.y);
-    }
+  public clone(): Vector {
+    return new Vector(this.x, this.y);
+  }
 }

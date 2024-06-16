@@ -11,7 +11,7 @@ interface ChessBoardSquareProps {
   handleChessBoardSquareOnDrop: HandleChessBoardSquareOnDrop;
 }
 
-enum DataTransferKey{
+enum DataTransferKey {
   PIECE_ID = 'Piece Id',
   CURR_SQUARE_ID = 'Current Square Id',
 }
@@ -29,15 +29,25 @@ export const ChessBoardSquare = ({
 
   const preventDefaultHandler: DragEventHandler = (e) => e.preventDefault();
   const onChessPieceDragStart: DragEventHandler<HTMLDivElement> = (e) => {
-    e.dataTransfer.setData(DataTransferKey.PIECE_ID, chessBoardSquare.piece?.id || '');
-    e.dataTransfer.setData(DataTransferKey.CURR_SQUARE_ID, chessBoardSquare.id|| '');
+    e.dataTransfer.setData(
+      DataTransferKey.PIECE_ID,
+      chessBoardSquare.piece?.id || ''
+    );
+    e.dataTransfer.setData(
+      DataTransferKey.CURR_SQUARE_ID,
+      chessBoardSquare.id || ''
+    );
   };
   const onChessBoardSquareDrop = (
     e: DragEvent,
     chessBoardSquare: ChessBoardSquareModel
   ) => {
-    const pieceId = e.nativeEvent.dataTransfer?.getData(DataTransferKey.PIECE_ID);
-    const currSquareId = e.nativeEvent.dataTransfer?.getData(DataTransferKey.CURR_SQUARE_ID);
+    const pieceId = e.nativeEvent.dataTransfer?.getData(
+      DataTransferKey.PIECE_ID
+    );
+    const currSquareId = e.nativeEvent.dataTransfer?.getData(
+      DataTransferKey.CURR_SQUARE_ID
+    );
     if (!pieceId || !currSquareId) return;
     handleChessBoardSquareOnDrop(pieceId, currSquareId, chessBoardSquare.id);
   };

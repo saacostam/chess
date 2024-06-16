@@ -37,7 +37,7 @@ export const canMove = ({
       ...pieceCanMovePayload,
       chessPiece: chessPiece,
     });
-  } else if (chessPiece.type === ChessPieceType.ROW) {
+  } else if (chessPiece.type === ChessPieceType.ROOK) {
     return chessPiece.canMove({
       ...pieceCanMovePayload,
       chessPiece: chessPiece,

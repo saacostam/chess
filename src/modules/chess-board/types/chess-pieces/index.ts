@@ -1,15 +1,14 @@
-import { ChessBoardModel } from '../chess-board.type';
-
 export * from './pawn.chess-piece';
 export * from './rook.chess-piece';
 
+import { ChessBoardModel } from '../chess-board.type';
 import { PawnChessPiece } from './pawn.chess-piece';
 import { RookChessPiece } from './rook.chess-piece';
 import { ChessBoardSquareModel } from '../chess-board-square.type';
 
 export enum ChessPieceType {
   PAWN = 'Pawn',
-  ROW = 'Row',
+  ROOK = 'Row',
   KNIGHT = 'Knight',
   BISHOP = 'Bishop',
   QUEEN = 'Queen',

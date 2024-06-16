@@ -10,7 +10,7 @@ interface RowChessPieceOptions {
 
 export class RookChessPiece implements IChessPiece {
   public id = uuid();
-  public type: ChessPieceType = ChessPieceType.ROW;
+  public type: ChessPieceType = ChessPieceType.ROOK;
   public color: ChessPieceColor;
 
   constructor({ color }: RowChessPieceOptions) {

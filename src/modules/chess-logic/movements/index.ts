@@ -71,6 +71,11 @@ export const _pawnCanMove = ({
   const ONE = chessPiece.color === ChessPieceColor.BLACK ? -1 : 1;
 
   return (
-    (isSecondRank && LOW <= dy && dy <= HIGH) || (!isSecondRank && dy === ONE)
+    (isSecondRank &&
+      LOW <= dy &&
+      dy <= HIGH &&
+      !chessBoard.grid[currentSquare.position.y + ONE][currentSquare.position.x]
+        .piece) ||
+    (!isSecondRank && dy === ONE)
   );
 };

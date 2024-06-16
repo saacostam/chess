@@ -1,10 +1,12 @@
 export * from './bishop.chess-piece';
+export * from './king.chess-piece';
 export * from './knight.chess-piece';
 export * from './pawn.chess-piece';
 export * from './queen.chess-piece';
 export * from './rook.chess-piece';
 
 import { BishopChessPiece } from './bishop.chess-piece';
+import { KingChessPiece } from './king.chess-piece';
 import { KnightChessPiece } from './knight.chess-piece';
 import { PawnChessPiece } from './pawn.chess-piece';
 import { QueenChessPiece } from './queen.chess-piece';
@@ -43,6 +45,7 @@ export interface IChessPiece {
 
 export type ChessPiece =
   | BishopChessPiece
+  | KingChessPiece
   | KnightChessPiece
   | PawnChessPiece
   | QueenChessPiece

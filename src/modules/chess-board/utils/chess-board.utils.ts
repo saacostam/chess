@@ -8,6 +8,7 @@ import {
   ChessBoardSquareModel,
   ChessPiece,
   ChessPieceColor,
+  KingChessPiece,
   KnightChessPiece,
   PawnChessPiece,
   QueenChessPiece,
@@ -69,6 +70,10 @@ export const _getChessPieceByPosition = (
       chessPiece = new QueenChessPiece({
         color: ChessPieceColor.WHITE,
       });
+    else if (position.x === 4)
+      chessPiece = new KingChessPiece({
+        color: ChessPieceColor.WHITE,
+      });
   } else if (isWhitePawnRow) {
     chessPiece = new PawnChessPiece({
       color: ChessPieceColor.WHITE,
@@ -88,6 +93,10 @@ export const _getChessPieceByPosition = (
       });
     else if (position.x === 3)
       chessPiece = new QueenChessPiece({
+        color: ChessPieceColor.BLACK,
+      });
+    else if (position.x === 4)
+      chessPiece = new KingChessPiece({
         color: ChessPieceColor.BLACK,
       });
   } else if (isBlackPawnRow) {

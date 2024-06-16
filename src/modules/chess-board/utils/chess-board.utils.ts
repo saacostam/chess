@@ -2,13 +2,14 @@ import { Vector } from 'src/modules/physics';
 
 import { CHESS_BOARD_CONFIG } from '../constants';
 import {
+  BishopChessPiece,
+  ChessBoardGrid,
   ChessBoardModel,
+  ChessBoardSquareModel,
   ChessPiece,
   ChessPieceColor,
-  ChessBoardSquareModel,
   PawnChessPiece,
   RookChessPiece,
-  ChessBoardGrid,
 } from '../types';
 
 export const getCleanChessBoard = (): ChessBoardModel => {
@@ -54,6 +55,10 @@ export const _getChessPieceByPosition = (
       chessPiece = new RookChessPiece({
         color: ChessPieceColor.WHITE,
       });
+    else if (position.x === 1 || position.x === WIDTH - 2)
+      chessPiece = new BishopChessPiece({
+        color: ChessPieceColor.WHITE,
+      });
   } else if (isWhitePawnRow) {
     chessPiece = new PawnChessPiece({
       color: ChessPieceColor.WHITE,
@@ -61,6 +66,10 @@ export const _getChessPieceByPosition = (
   } else if (isBlackBackRow) {
     if (position.x === 0 || position.x === WIDTH - 1)
       chessPiece = new RookChessPiece({
+        color: ChessPieceColor.BLACK,
+      });
+    else if (position.x === 1 || position.x === WIDTH - 2)
+      chessPiece = new BishopChessPiece({
         color: ChessPieceColor.BLACK,
       });
   } else if (isBlackPawnRow) {

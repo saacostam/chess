@@ -1,9 +1,12 @@
+export * from './bishop.chess-piece';
 export * from './pawn.chess-piece';
 export * from './rook.chess-piece';
 
-import { ChessBoardModel } from '../chess-board.type';
+import { BishopChessPiece } from './bishop.chess-piece';
 import { PawnChessPiece } from './pawn.chess-piece';
 import { RookChessPiece } from './rook.chess-piece';
+
+import { ChessBoardModel } from '../chess-board.type';
 import { ChessBoardSquareModel } from '../chess-board-square.type';
 
 export enum ChessPieceType {
@@ -34,4 +37,4 @@ export interface IChessPiece {
   canMove: (options: PieceCanMove<IChessPiece>) => boolean;
 }
 
-export type ChessPiece = PawnChessPiece | RookChessPiece;
+export type ChessPiece = PawnChessPiece | RookChessPiece | BishopChessPiece;

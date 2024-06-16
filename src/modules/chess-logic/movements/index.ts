@@ -42,6 +42,11 @@ export const canMove = ({
       ...pieceCanMovePayload,
       chessPiece: chessPiece,
     });
+  } else if (chessPiece.type === ChessPieceType.BISHOP) {
+    return chessPiece.canMove({
+      ...pieceCanMovePayload,
+      chessPiece: chessPiece,
+    });
   }
 
   return false;

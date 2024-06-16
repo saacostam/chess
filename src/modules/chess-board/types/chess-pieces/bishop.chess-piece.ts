@@ -1,19 +1,19 @@
 import { v4 as uuid } from 'uuid';
 
 import { ChessPieceColor, ChessPieceType, IChessPiece, PieceCanMove } from '.';
-import { Vector } from '../../../physics';
 import { isWithinLimits } from '../../utils';
+import { Vector } from '../../../physics';
 
-interface RowChessPieceOptions {
+interface BishopChessPieceOptions {
   color: ChessPieceColor;
 }
 
-export class RookChessPiece implements IChessPiece {
+export class BishopChessPiece implements IChessPiece {
   public id = uuid();
-  public type: ChessPieceType = ChessPieceType.ROOK;
+  public type: ChessPieceType = ChessPieceType.BISHOP;
   public color: ChessPieceColor;
 
-  constructor({ color }: RowChessPieceOptions) {
+  constructor({ color }: BishopChessPieceOptions) {
     this.color = color;
   }
 
@@ -21,11 +21,13 @@ export class RookChessPiece implements IChessPiece {
     chessBoard,
     currentSquare,
     objectiveSquare,
-  }: PieceCanMove<RookChessPiece>): boolean {
+  }: PieceCanMove<BishopChessPiece>): boolean {
     let dx = objectiveSquare.position.x - currentSquare.position.x;
     let dy = objectiveSquare.position.y - currentSquare.position.y;
 
-    if ((dx === 0 && dy === 0) || (dx !== 0 && dy !== 0)) return false;
+    console.log(dx, dy);
+
+    if (Math.abs(dx) !== Math.abs(dy)) return false;
 
     dx = dx === 0 ? 0 : dx / Math.abs(dx);
     dy = dy === 0 ? 0 : dy / Math.abs(dy);

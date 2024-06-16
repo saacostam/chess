@@ -3,6 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { findPieceById, findSquareById } from '../utils';
 import { HandleChessBoardSquareOnDrop } from '../types';
 import { useChessBoardClass } from './use-chess-board-class';
+import { canMove } from '../../chess-logic';
 
 export const useChessBoard = () => {
   const { chessBoard, updateChessBoardSquares } = useChessBoardClass();
@@ -24,22 +25,33 @@ export const useChessBoard = () => {
           )
             return [];
 
-          return [
-            [
-              currSquare.id,
-              (currSquare) => ({
-                ...currSquare,
-                piece: undefined,
-              }),
-            ],
-            [
-              objectiveSquare.id,
-              (objectiveSquare) => ({
-                ...objectiveSquare,
-                piece: piece,
-              }),
-            ],
-          ];
+          if (
+            canMove({
+              chessPiece: piece,
+              chessBoard: chessBoard,
+              currentPosition: currSquare.position,
+              objectivePosition: objectiveSquare.position,
+            })
+          ) {
+            return [
+              [
+                currSquare.id,
+                (currSquare) => ({
+                  ...currSquare,
+                  piece: undefined,
+                }),
+              ],
+              [
+                objectiveSquare.id,
+                (objectiveSquare) => ({
+                  ...objectiveSquare,
+                  piece: piece,
+                }),
+              ],
+            ];
+          }
+
+          return [];
         });
       },
       [updateChessBoardSquares]

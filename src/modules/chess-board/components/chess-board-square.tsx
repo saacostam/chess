@@ -2,8 +2,17 @@ import { DragEvent, DragEventHandler } from 'react';
 import {
   ChessBoardSquareModel,
   ChessPieceColor,
+  ChessPieceType,
   HandleChessBoardSquareOnDrop,
 } from '../types';
+import {
+  BishopIcon,
+  KingIcon,
+  KnightIcon,
+  PawnIcon,
+  QueenIcon,
+  RookIcon,
+} from '../../icons';
 
 interface ChessBoardSquareProps {
   color: ChessPieceColor;
@@ -24,8 +33,6 @@ export const ChessBoardSquare = ({
   const bgColor = color === ChessPieceColor.WHITE ? 'primary' : 'secondary';
   const pieceColor =
     chessBoardSquare.piece?.color === ChessPieceColor.WHITE ? 'white' : 'black';
-  const pieceText =
-    chessBoardSquare.piece?.color === ChessPieceColor.BLACK ? 'white' : 'black';
 
   const preventDefaultHandler: DragEventHandler = (e) => e.preventDefault();
   const onChessPieceDragStart: DragEventHandler<HTMLDivElement> = (e) => {
@@ -63,9 +70,21 @@ export const ChessBoardSquare = ({
         <div
           draggable="true"
           onDragStart={onChessPieceDragStart}
-          className={`bg-${pieceColor} text-${pieceText} w-12 h-12 flex items-center justify-center select-none cursor-grab`}
+          className={`w-12 h-12 flex items-center justify-center select-none cursor-grab`}
         >
-          {chessBoardSquare.piece.type}
+          {chessBoardSquare.piece.type === ChessPieceType.PAWN ? (
+            <PawnIcon color={pieceColor} />
+          ) : chessBoardSquare.piece.type === ChessPieceType.ROOK ? (
+            <RookIcon color={pieceColor} />
+          ) : chessBoardSquare.piece.type === ChessPieceType.KNIGHT ? (
+            <KnightIcon color={pieceColor} />
+          ) : chessBoardSquare.piece.type === ChessPieceType.QUEEN ? (
+            <QueenIcon color={pieceColor} />
+          ) : chessBoardSquare.piece.type === ChessPieceType.BISHOP ? (
+            <BishopIcon color={pieceColor} />
+          ) : chessBoardSquare.piece.type === ChessPieceType.KING ? (
+            <KingIcon color={pieceColor} />
+          ) : null}
         </div>
       )}
     </div>

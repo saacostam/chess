@@ -1,0 +1,86 @@
+import { Vector } from "src/modules/physics";
+
+import { CHESS_BOARD_CONFIG } from "../constants";
+import { ChessBoardModel, ChessPiece, ChessPieceColor, ChessBoardSquareModel, PawnChessPiece, RowChessPiece, ChessBoardGrid } from "../types"
+
+export const getCleanChessBoard = (): ChessBoardModel => {
+    const grid: ChessBoardSquareModel[][] = [];
+
+    for (let y = 0; y < CHESS_BOARD_CONFIG.HEIGHT; y++){
+        const row: ChessBoardSquareModel[] = [];
+        
+        for (let x = 0; x < CHESS_BOARD_CONFIG.WIDTH; x++){
+            const position = new Vector(x, y);
+            
+            const piece: ChessPiece | undefined = _getChessPieceByPosition(position);
+            
+            row.push(
+                new ChessBoardSquareModel({
+                    position: position,
+                    piece: piece,
+                })
+            )
+        }
+
+        grid.push(row);
+    }
+
+    return new ChessBoardModel(grid);
+}
+
+export const _getChessPieceByPosition = (position: Vector): ChessPiece | undefined => {
+    const { WIDTH, HEIGHT } = CHESS_BOARD_CONFIG;
+
+    let chessPiece: ChessPiece | undefined = undefined;
+
+    const isWhiteBackRow = position.y === 0;
+    const isWhitePawnRow = position.y === 1;
+
+    const isBlackBackRow = position.y === HEIGHT - 1;
+    const isBlackPawnRow = position.y === HEIGHT - 2;
+
+    if (isWhiteBackRow){
+        if (position.x === 0 || position.x === WIDTH - 1) chessPiece = new RowChessPiece({
+            color: ChessPieceColor.WHITE,
+        });
+    }
+    else if (isWhitePawnRow){
+        chessPiece = new PawnChessPiece({
+            color: ChessPieceColor.WHITE,
+        })
+    }
+    else if (isBlackBackRow){
+        if (position.x === 0 || position.x === WIDTH - 1) chessPiece = new RowChessPiece({
+            color: ChessPieceColor.BLACK,
+        });
+    }
+    else if (isBlackPawnRow){
+        chessPiece = new PawnChessPiece({
+            color: ChessPieceColor.BLACK,
+        })
+    }
+
+    return chessPiece;
+}
+
+export const getChessBoardForColorSpecificView = (options: {
+    chessBoardGrid: ChessBoardGrid,
+    shouldInvert: boolean;
+}): ChessBoardGrid  => {
+    const {chessBoardGrid, shouldInvert} = options;
+
+    const reflectedChessBoardGrid = chessBoardGrid.map(row => row.map(piece => piece));
+
+    if (shouldInvert){
+        for (let i = 0; i < reflectedChessBoardGrid.length; i++){
+            for (let j = 0; j < reflectedChessBoardGrid[i].length; j++){
+                const mi = reflectedChessBoardGrid.length - 1 - i;
+                const mj = reflectedChessBoardGrid[i].length - 1 - j;
+
+                reflectedChessBoardGrid[i][j] = chessBoardGrid[mi][mj];
+            }
+        }
+    }
+
+    return reflectedChessBoardGrid;
+}

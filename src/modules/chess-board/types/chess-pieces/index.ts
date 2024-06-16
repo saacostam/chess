@@ -1,8 +1,10 @@
 export * from './bishop.chess-piece';
+export * from './knight.chess-piece';
 export * from './pawn.chess-piece';
 export * from './rook.chess-piece';
 
 import { BishopChessPiece } from './bishop.chess-piece';
+import { KnightChessPiece } from './knight.chess-piece';
 import { PawnChessPiece } from './pawn.chess-piece';
 import { RookChessPiece } from './rook.chess-piece';
 
@@ -37,4 +39,8 @@ export interface IChessPiece {
   canMove: (options: PieceCanMove<IChessPiece>) => boolean;
 }
 
-export type ChessPiece = PawnChessPiece | RookChessPiece | BishopChessPiece;
+export type ChessPiece =
+  | BishopChessPiece
+  | KnightChessPiece
+  | PawnChessPiece
+  | RookChessPiece;

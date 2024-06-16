@@ -1,9 +1,4 @@
-import {
-  ChessBoardModel,
-  ChessPiece,
-  ChessPieceType,
-  PieceCanMove,
-} from '../../chess-board';
+import { ChessBoardModel, ChessPiece, PieceCanMove } from '../../chess-board';
 import { Vector } from '../../physics';
 
 export interface CanMoveOptions {
@@ -32,22 +27,8 @@ export const canMove = ({
     objectiveSquare,
   };
 
-  if (chessPiece.type === ChessPieceType.PAWN) {
-    return chessPiece.canMove({
-      ...pieceCanMovePayload,
-      chessPiece: chessPiece,
-    });
-  } else if (chessPiece.type === ChessPieceType.ROOK) {
-    return chessPiece.canMove({
-      ...pieceCanMovePayload,
-      chessPiece: chessPiece,
-    });
-  } else if (chessPiece.type === ChessPieceType.BISHOP) {
-    return chessPiece.canMove({
-      ...pieceCanMovePayload,
-      chessPiece: chessPiece,
-    });
-  }
-
-  return false;
+  return chessPiece.canMove({
+    ...pieceCanMovePayload,
+    chessPiece: chessPiece,
+  });
 };

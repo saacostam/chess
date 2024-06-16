@@ -1,8 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
 import { ChessPieceColor, ChessPieceType, IChessPiece, PieceCanMove } from '.';
-import { isWithinLimits } from '../../utils';
-import { Vector } from '../../../physics';
 
 interface KnightChessPieceOptions {
   color: ChessPieceColor;

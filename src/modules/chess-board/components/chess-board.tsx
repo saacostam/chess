@@ -4,6 +4,7 @@ import { ChessPieceColor } from '../types';
 
 import { ChessBoardSquare } from './chess-board-square';
 import { getChessBoardForColorSpecificView } from '../utils';
+import { DndContext } from '@dnd-kit/core';
 
 interface ChessBoardProps {
   currentPlayerColor: ChessPieceColor;
@@ -22,7 +23,11 @@ export const ChessBoard = ({ currentPlayerColor }: ChessBoardProps) => {
   );
 
   return (
-    <section>
+    <DndContext
+      onDragEnd={({ active, over }) =>
+        handleChessBoardSquareOnDrop(active.id, over?.id || '')
+      }
+    >
       {reflectedChessBoardGrid.map((chessBoardSquareRow, y) => (
         <div
           className="flex w-fit mx-auto bg-primary bg-secondary bg-white bg-black text-white text-black"
@@ -35,11 +40,10 @@ export const ChessBoard = ({ currentPlayerColor }: ChessBoardProps) => {
                 y % 2 === x % 2 ? ChessPieceColor.WHITE : ChessPieceColor.BLACK
               }
               chessBoardSquare={chessBoardSquare}
-              handleChessBoardSquareOnDrop={handleChessBoardSquareOnDrop}
             />
           ))}
         </div>
       ))}
-    </section>
+    </DndContext>
   );
 };

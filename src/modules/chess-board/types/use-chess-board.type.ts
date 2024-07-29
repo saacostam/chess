@@ -1,5 +1,6 @@
+import { UniqueIdentifier } from '@dnd-kit/core';
+
 export type HandleChessBoardSquareOnDrop = (
-  pieceId: string,
-  currSquareId: string,
-  objectiveSquareId: string
+  pieceId: UniqueIdentifier,
+  objectiveSquareId: UniqueIdentifier
 ) => void;

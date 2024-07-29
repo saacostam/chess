@@ -14,6 +14,7 @@ import {
   QueenChessPiece,
   RookChessPiece,
 } from '../types';
+import { UniqueIdentifier } from '@dnd-kit/core';
 
 export const getCleanChessBoard = (): ChessBoardModel => {
   const grid: ChessBoardSquareModel[][] = [];
@@ -134,7 +135,7 @@ export const getChessBoardForColorSpecificView = (options: {
 
 export const findPieceById = (
   chessBoard: ChessBoardModel,
-  pieceId: string
+  pieceId: UniqueIdentifier
 ): ChessPiece | undefined => {
   const { grid } = chessBoard;
 
@@ -150,13 +151,26 @@ export const findPieceById = (
 
 export const findSquareById = (
   chessBoard: ChessBoardModel,
-  squareId: string
+  squareId: UniqueIdentifier
 ): ChessBoardSquareModel | undefined => {
   const { grid } = chessBoard;
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
       if (grid[i][j].id === squareId) return grid[i][j];
+    }
+  }
+};
+
+export const findSquareByPieceId = (
+  chessBoard: ChessBoardModel,
+  pieceId: UniqueIdentifier
+): ChessBoardSquareModel | undefined => {
+  const { grid } = chessBoard;
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      if (grid[i][j].piece?.id === pieceId) return grid[i][j];
     }
   }
 };

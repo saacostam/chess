@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-import { Vector } from 'src/modules/physics';
+import { Vector } from '../../physics';
 import { ChessPiece } from './chess-pieces';
 
 interface ChessBoardSquareOptions {
